@@ -15,8 +15,9 @@ source:
 
 build:
   noarch: python
+  skip: True # [not linux64]
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: python -m pip install --no-deps --ignore-installed -no-build-isolation .
 
 requirements:
   build:
@@ -39,6 +40,14 @@ about:
   dev_url: 'http://pypi.python.org/pypi/rfc3987'
 
 extra:
+  skip-lints:
+    - avoid_noarch
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/66289
+    reason: needed for flex-swagger->prance
+    recipe-maintainers:
+       - bkreider
+
   recipe-maintainers:
     - RohitK89
     - mariusvniekerk
