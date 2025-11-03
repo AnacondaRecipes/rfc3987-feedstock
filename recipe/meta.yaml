@@ -15,30 +15,50 @@ source:
 
 build:
   noarch: python
+  skip: True # [not linux64]
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation 
 
 requirements:
-  build:
+  host:
     - python
     - pip
+    - setuptools
+    - wheel
+  build:
+    - python
   run:
     - python
 
 test:
   imports: "{{ name }}"
+  requires:
+    - pip
+  commands:
+    - pip check
+
 
 about:
-  home: http://pypi.python.org/pypi/rfc3987
-  license: GNU GPL3
+  home: https://pypi.org/project/rfc3987/
+  license: 'GPL-3.0-or-later'
   license_family: GPL3
   license_file: 'COPYING.txt'
-  summary: Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)
-  description: This module provides regular expressions according to RFC 3986 and RFC 3987
-  doc_url: ''
-  dev_url: 'http://pypi.python.org/pypi/rfc3987'
+  summary: 'Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)'
+  description: 'This module provides regular expressions according to RFC 3986 and RFC 3987'
+  doc_url: https://github.com/dgerber/rfc3987
+  dev_url: https://github.com/dgerber/rfc3987
 
 extra:
+  skip-lints:
+    - avoid_noarch
+    - host_section_needs_exact_pinnings
+
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/66289
+    reason: needed for flex-swagger->prance
+    recipe-maintainers:
+       - bkreider
+
   recipe-maintainers:
     - RohitK89
     - mariusvniekerk
