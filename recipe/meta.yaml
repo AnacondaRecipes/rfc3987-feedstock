@@ -27,6 +27,7 @@ requirements:
     - wheel
   build:
     - python
+    - pip
   run:
     - python
 
@@ -43,8 +44,8 @@ about:
   license: 'GPL-3.0-or-later'
   license_family: GPL3
   license_file: 'COPYING.txt'
-  summary: Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)
-  description: This module provides regular expressions according to RFC 3986 and RFC 3987
+  summary: 'Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)'
+  description: 'This module provides regular expressions according to RFC 3986 and RFC 3987'
   doc_url: https://github.com/dgerber/rfc3987
   dev_url: https://github.com/dgerber/rfc3987
 
